@@ -3,61 +3,103 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>~/startpage</title>
+    <title>~/home</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="left-container">
+            <div class="time-and-weather">
+                <div class = "time" id = "time">
+                    <script>
+                        const timeElement = document.querySelector('.time');
+                      
+                        function updateTime() {
+                          const currentTime = new Date();
+                          const hours = currentTime.getHours();
+                          const minutes = currentTime.getMinutes();
+                          const seconds = currentTime.getSeconds();
+                          const timeString = `${hours}:${minutes.toString().padStart(2, '0')}`;
+                          timeElement.textContent = timeString;
+                        }
+                        setInterval(updateTime, 1000); // update every 1 second
+                      </script>
+                </div>
+
+                <div class="weather" id="weather">
+                    <p id = "weather"></p>
+
+                    <script>
+                        const weatherElement = document.querySelector('.weather');
+
+                        const apiKey = '4a64cd55d1e84c01b99135356251904';
+                        const city = 'Liverpool';
+                        const url = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city;
+
+                        fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            const weather = data.current.condition.text;
+                            const temperature = data.current.temp_c;
+                            const string = weather + ' ' + temperature + '°C';
+                            const icon = data.current.condition.icon;
+                            weatherElement.textContent = string;
+                        })
+                        .catch(error => console.error(error));
+                    </script>
+                </div>
+            </div>
+
             <div class="gif">
                 <img src="Sadness Sigma GIF.gif" />
             </div>
         </div>
 
         <div class="right-container">
+
             <div class="head">
-                <p>> cd ~/<span class="blinking">_</span></p>
+                <p>Hello, alan<span class="blinking">_</span></p>
             </div>
 
             <div class="bookmarks">
                 <div class="category">
                     <div class="links">
-                        <li class="title">work</li>
+                        <li class="title">study</li>
+                        <li><a href="https://notion.so">notion</a></li>
+                        <li><a href="https://isaacphysics.org">isaac physics</a></li>
+                        <li><a href="https://madasmaths.com">madasmaths</a></li>
+                        <li><a href="https://physicsandmathstutor.com">pmt</a></li>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="links">
+                        <li class="title">miscellaneous</li>
                         <li><a href="https://gmail.com">gmail</a></li>
-                        <li><a href="https://www.office.com">Office 365</a></li>
-                        <li><a href="https://instagram.com">instagram</a></li>
-                        <li><a href="https://snapchat.com/">snapchat</a></li>
-                    </div>
-                </div>
-
-                <div class="category">
-                    <div class="links">
-                        <li class="title">dev</li>
                         <li><a href="https://github.com/">github</a></li>
-                        <li><a href="https://lobste.rs/">lobste.rs</a></li>
-                        <li><a href="https://mankier.com/">mankier</a></li>
-                        <li><a href="https://devdocs.io/">devdocs</a></li>
+                        <li><a href="https://www.londonstockexchange.com/">stock portfolio</a></li>
+                        <li><a href="https://office.com">office 365</a></li>
                     </div>
                 </div>
 
                 <div class="category">
                     <div class="links">
-                        <li class="title"><a style="color: #EADBB2" href="https://reddit.com">reddit</a></li>
-                        <li><a href="https://reddit.com/r/programming/">programming</a></li>
-                        <li><a href="https://reddit.com/r/selfhosted/">selfhosted</a></li>
-                        <li><a href="https://reddit.com/r/unixporn/">un</a></li>
-                        <li><a href="https://reddit.com/r/mechanicalkeyboards/">mk</a></li>
+                        <li class="title"><a style="color: #c282cf" href="https://reddit.com">entertainment</a></li>
+                        <li><a href="https://youtube.com">youtube</a></li>
+                        <li><a href="https://spotify.com">spotify</a></li>
+                        <li><a href="https://hdtodayz.to/">netflix</a></li>
+                        <li><a href="https://www.bilibili.com/">bili bili</a></li>
                     </div>
                 </div>
 
                 <div class="category">
                     <div class="links">
-                        <li class="title">play</li>
-                        <li><a href="https://monkeytype.com/">monkeytype</a></li>
-                        <li><a href="https://youtube.com/">youtube</a></li>
-                        <li><a href="https://twitch.tv/">twitch</a></li>
-                        <li><a href="https://netflix.com/">netflix</a></li>
+                        <li class="title">social media</li>
+                        <li><a href="https://instagram.com">instagram</a></li>
+                        <li><a href="https://x.com">X</a></li>
+                        <li><a href="https://reddit.com">reddit</a></li>
+                        <li><a href="https://snapchat.com">snapchat.com</a></li>
                     </div>
                 </div>
             </div>
