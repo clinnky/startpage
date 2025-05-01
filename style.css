@@ -3,219 +3,217 @@
     --color-fg: #c282cf;
     --color-link: #8F9191;
     --color-link-visited: #8F9191;
-    --color-link-hover: #3d97bb ;
+    --color-link-hover: #3d97bb;
 }
 
 html, body {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: "Fira Code";
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: "Fira Code";
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr min-content min-content 1fr;
-  grid-template-areas: ". left right .";
-  column-gap: 80px;
-  justify-items: center;
-  align-items: center; /* <-- center both left and right vertically */
-  min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr min-content min-content 1fr;
+    grid-template-areas: ". left right .";
+    column-gap: 80px;
+    justify-items: center;
+    align-items: center; /* <-- center both left and right vertically */
+    min-height: 100vh;
 }
 
-
 .left-container {
-  grid-area: left;
-  width: 460px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    grid-area: left;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .right-container {
-  grid-area: right;
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+    grid-area: right;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
-
-
 
 .left-container, .right-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
 }
 
-
 .gif img {
-  max-width: 100%;
-  max-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 40px;
-  margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    margin-top: -50px;
 }
 
 .category {
-  display: flex;
-  flex-direction: column;
-  width: 180px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
 }
 
 .bookmarks {
-  display: flex;
-  justify-content: center;
-  margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
 }
 
-
 .links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .title {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 li {
-  font-size: 16px;
-  list-style-type: none;
-  padding: 5px
+    font-size: 16px;
+    list-style-type: none;
+    padding: 5px;
 }
 
 a:link {
-  text-decoration: none;
-  color: var(--color-link);
+    text-decoration: none;
+    color: var(--color-link);
 }
 
 a:visited {
-  color: var(--color-link-visited);
+    color: var(--color-link-visited);
 }
 
 a:hover {
-  color: var(--color-link-hover);
+    color: var(--color-link-hover);
 }
 
 .blinking {
-  animation: opacity 1s ease-in-out infinite;
-  opacity: 1;
+    animation: opacity 1s ease-in-out infinite;
+    opacity: 1;
 }
 
 @keyframes opacity {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .time-and-weather {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: auto;
-  margin-bottom: 10px;
-  font-size: 24px;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: auto;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
 
 body {
-  animation: fadein 1s ease-out;
+    animation: fadein 1s ease-out;
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 a:hover {
-  color: var(--color-link-hover);
-  text-shadow: 0 0 5px var(--color-link-hover), 0 0 10px var(--color-link-hover);
-  transition: text-shadow 0.3s ease-in-out;
+    color: var(--color-link-hover);
+    text-shadow: 0 0 5px var(--color-link-hover), 0 0 10px var(--color-link-hover);
+    transition: text-shadow 0.3s ease-in-out;
 }
+
 .video-player {
-  display: none; /* Hides the iframe player */
+    display: none; /* Hides the iframe player */
 }
 
 .wolfram-search {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .wolfram-input {
-  padding: 8px;
-  border-radius: 5px;
-  border: none;
-  width: 220px;
-  background-color: #1e1e1e;
-  color: #c282cf;
-  font-family: "Fira Code";
-  font-size: 14px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 220px;
+    background-color: #1e1e1e;
+    color: #c282cf;
+    font-family: "Fira Code";
+    font-size: 14px;
 }
 
 .wolfram-button {
-  padding: 8px 12px;
-  margin-left: 8px;
-  background-color: #c282cf;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: "Fira Code";
-  font-size: 14px;
+    padding: 8px 12px;
+    margin-left: 8px;
+    background-color: #c282cf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Fira Code";
+    font-size: 14px;
 }
 
 .wolfram-button:hover {
-  background-color: #a066b4;
+    background-color: #a066b4;
 }
 
 .search-toggle-container {
-  margin-top: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search-toggle-buttons {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .toggle-button {
-  padding: 5px 10px;
-  background-color: #1e1e1e;
-  border: 1px solid #c282cf;
-  color: #c282cf;
-  font-family: "Fira Code";
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 5px 10px;
+    background-color: #1e1e1e;
+    border: 1px solid #c282cf;
+    color: #c282cf;
+    font-family: "Fira Code";
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .toggle-button.active {
-  background-color: #c282cf;
-  color: white;
+    background-color: #c282cf;
+    color: white;
 }
