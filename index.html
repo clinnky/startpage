@@ -5,48 +5,61 @@
     <meta charset="UTF-8">
     <title>~/home</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Hide the iframe but allow it to play in the background */
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;  /* Make the iframe invisible */
+            pointer-events: none; /* Disable interaction with the iframe */
+        }
+
+        /* Make the body fill the entire screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Embed the YouTube video and make it invisible
+    <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&loop=1&playlist=jfKfPfyJRdk"
+        title="lofi hip hop radio 📚 beats to relax/study to" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+    </iframe> -->
+
     <div class="container">
         <div class="left-container">
             <div class="time-and-weather">
-                <div class = "time" id = "time">
-                    <script>
-                        const timeElement = document.querySelector('.time');
-                      
-                        function updateTime() {
-                          const currentTime = new Date();
-                          const hours = currentTime.getHours();
-                          const minutes = currentTime.getMinutes();
-                          const seconds = currentTime.getSeconds();
-                          const timeString = `${hours}:${minutes.toString().padStart(2, '0')}`;
-                          timeElement.textContent = timeString;
-                        }
-                        setInterval(updateTime, 1000); // update every 1 second
-                      </script>
-                </div>
-
+                <div class="time" id="time">--:--</div>
                 <div class="weather" id="weather">
-                    <p id = "weather"></p>
-
+                    <p id="weather"></p>
                     <script>
                         const weatherElement = document.querySelector('.weather');
-
                         const apiKey = '4a64cd55d1e84c01b99135356251904';
                         const city = 'Liverpool';
                         const url = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city;
 
                         fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            const weather = data.current.condition.text;
-                            const temperature = data.current.temp_c;
-                            const string = weather + ' ' + temperature + '°C';
-                            const icon = data.current.condition.icon;
-                            weatherElement.textContent = string;
-                        })
-                        .catch(error => console.error(error));
+                            .then(response => response.json())
+                            .then(data => {
+                                const weather = data.current.condition.text;
+                                const temperature = data.current.temp_c;
+                                const string = weather + ' ' + temperature + '°C';
+                                const icon = data.current.condition.icon;
+                                weatherElement.textContent = string;
+                            })
+                            .catch(error => console.error(error));
                     </script>
                 </div>
             </div>
@@ -57,10 +70,19 @@
         </div>
 
         <div class="right-container">
-
             <div class="head">
-                <p>Hello, alan<span class="blinking">_</span></p>
+                <p id="greeting">Hello, alan<span class="blinking">_</span></p>
+                <script>
+                    const hour = new Date().getHours();
+                    let greet = "Hello";
+                    if (hour < 12) greet = "Good morning";
+                    else if (hour < 18) greet = "Good afternoon";
+                    else greet = "Good evening";
+                    document.getElementById('greeting').innerHTML = `${greet}, alan<span class="blinking">_</span>`;
+                </script>
             </div>
+
+            
 
             <div class="bookmarks">
                 <div class="category">
@@ -78,7 +100,7 @@
                         <li class="title">miscellaneous</li>
                         <li><a href="https://gmail.com">gmail</a></li>
                         <li><a href="https://github.com/">github</a></li>
-                        <li><a href="https://www.londonstockexchange.com/">stock portfolio</a></li>
+                        <li><a href="https://uk.finance.yahoo.com/markets/">stocks</a></li>
                         <li><a href="https://office.com">office 365</a></li>
                     </div>
                 </div>
@@ -89,7 +111,7 @@
                         <li><a href="https://youtube.com">youtube</a></li>
                         <li><a href="https://spotify.com">spotify</a></li>
                         <li><a href="https://hdtodayz.to/">netflix</a></li>
-                        <li><a href="https://www.bilibili.com/">bili bili</a></li>
+                        <li><a href="https:/om//www.bilibili.com/">bili bili</a></li>
                     </div>
                 </div>
 
@@ -101,10 +123,55 @@
                         <li><a href="https://reddit.com">reddit</a></li>
                         <li><a href="https://snapchat.com">snapchat</a></li>
                     </div>
+                
                 </div>
+            </div>
+            <div class="search-toggle-container">
+                <div class="search-toggle-buttons">
+                    <button id="toggle-wolfram" class="toggle-button active">Wolfram Alpha</button>
+                    <button id="toggle-google" class="toggle-button">Web Search</button>
+                </div>
+            
+                <form id="search-form" action="https://www.wolframalpha.com/input/" method="get" target="_blank">
+                    <input type="text" name="i" placeholder="Ask Wolfram Alpha..." class="wolfram-input" id="search-input" />
+                    <button type="submit" class="wolfram-button">Go</button>
+                </form>
+                <script>
+                    const wolframBtn = document.getElementById("toggle-wolfram");
+                    const googleBtn = document.getElementById("toggle-google");
+                    const form = document.getElementById("search-form");
+                    const input = document.getElementById("search-input");
+                
+                    wolframBtn.addEventListener("click", () => {
+                        form.action = "https://www.wolframalpha.com/input/";
+                        input.name = "i";
+                        input.placeholder = "Ask Wolfram Alpha...";
+                        wolframBtn.classList.add("active");
+                        googleBtn.classList.remove("active");
+                    });
+                
+                    googleBtn.addEventListener("click", () => {
+                        form.action = "https://www.google.com/search";
+                        input.name = "q";
+                        input.placeholder = "Search the web...";
+                        googleBtn.classList.add("active");
+                        wolframBtn.classList.remove("active");
+                    });
+                </script>
             </div>
         </div>
     </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const h = now.getHours();
+            const m = now.getMinutes();
+            document.getElementById('time').textContent = `${h}:${m.toString().padStart(2, '0')}`;
+        }
+        updateTime(); // run immediately
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 
 </html>
