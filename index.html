@@ -31,25 +31,7 @@
         <div class="left-container">
             <div class="time-and-weather">
                 <div class="time" id="time">--:--</div>
-                <div class="weather" id="weather">
-                    <p id="weather"></p>
-                    <script>
-                        const weatherElement = document.querySelector('.weather');
-                        const apiKey = '4a64cd55d1e84c01b99135356251904';
-                        const city = 'Orlando';
-                        const url = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city;
-
-                        fetch(url)
-                            .then(response => response.json())
-                            .then(data => {
-                                const weather = data.current.condition.text;
-                                const temperature = data.current.temp_f;
-                                const string = weather + ' ' + temperature + '°F';
-                                weatherElement.textContent = string;
-                            })
-                            .catch(error => console.error(error));
-                    </script>
-                </div>
+                <div class="date" id="date">Loading date…</div>
             </div>
 
             <div class="gif">
@@ -166,6 +148,29 @@
         }
         updateTime();
         setInterval(updateTime, 1000);
+
+        // === DATE SCRIPT ===
+        function updateDate() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = now.toLocaleString('default', { month: 'short' }); // e.g. "Oct"
+            const year = now.getFullYear();
+            const formatted = `${day}/${month}/${year}`;
+            document.getElementById('date').textContent = formatted;
+        }
+
+        updateDate();
+
+        (function scheduleMidnightRefresh() {
+            const now = new Date();
+            const next = new Date(now);
+            next.setHours(24, 0, 5, 0); // 5 seconds after midnight
+            const msUntilNext = next - now;
+            setTimeout(function () {
+                updateDate();
+                scheduleMidnightRefresh();
+            }, msUntilNext);
+        })();
     </script>
 </body>
 
