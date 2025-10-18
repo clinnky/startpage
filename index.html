@@ -44,7 +44,7 @@
                             .then(data => {
                                 const weather = data.current.condition.text;
                                 const temperature = data.current.temp_f;
-                                const string = weather + ' ' + temperature + '°C';
+                                const string = weather + ' ' + temperature + '°F';
                                 weatherElement.textContent = string;
                             })
                             .catch(error => console.error(error));
