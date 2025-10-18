@@ -107,7 +107,7 @@
 
                 <div class="category">
                     <div class="links">
-                        <li class="title"><a style="color: #6B3CA9" href="https://reddit.com">entertainment</a></li>
+                        <li class="title"><a style="color: #c282cf" href="https://reddit.com">entertainment</a></li>
                         <li><a href="https://youtube.com">youtube</a></li>
                         <li><a href="https://spotify.com">spotify</a></li>
                         <li><a href="https://hdtodayz.to/">netflix</a></li>
@@ -126,27 +126,32 @@
                 
                 </div>
             </div>
+
+            <!-- REPLACED: Wolfram Alpha search => ChatGPT search -->
             <div class="search-toggle-container">
                 <div class="search-toggle-buttons">
-                    <button id="toggle-wolfram" class="toggle-button active">Wolfram Alpha</button>
+                    <button id="toggle-chatgpt" class="toggle-button active">ChatGPT</button>
                     <button id="toggle-google" class="toggle-button">Web Search</button>
                 </div>
             
-                <form id="search-form" action="https://www.wolframalpha.com/input/" method="get" target="_blank">
-                    <input type="text" name="i" placeholder="Ask Wolfram Alpha..." class="wolfram-input" id="search-input" />
+                <form id="search-form" action="https://chatgpt.com/" method="get" target="_blank">
+                    <input type="hidden" name="temporary-chat" value="true" id="temp-chat-flag" />
+                    <input type="text" name="q" placeholder="Ask ChatGPT..." class="wolfram-input" id="search-input" />
                     <button type="submit" class="wolfram-button">Go</button>
                 </form>
                 <script>
-                    const wolframBtn = document.getElementById("toggle-wolfram");
+                    const chatgptBtn = document.getElementById("toggle-chatgpt");
                     const googleBtn = document.getElementById("toggle-google");
                     const form = document.getElementById("search-form");
                     const input = document.getElementById("search-input");
+                    const tempFlag = document.getElementById("temp-chat-flag");
                 
-                    wolframBtn.addEventListener("click", () => {
-                        form.action = "https://www.wolframalpha.com/input/";
-                        input.name = "i";
-                        input.placeholder = "Ask Wolfram Alpha...";
-                        wolframBtn.classList.add("active");
+                    chatgptBtn.addEventListener("click", () => {
+                        form.action = "https://chatgpt.com/";
+                        input.name = "q";
+                        input.placeholder = "Ask ChatGPT...";
+                        tempFlag.disabled = false; // include temporary chat flag
+                        chatgptBtn.classList.add("active");
                         googleBtn.classList.remove("active");
                     });
                 
@@ -154,11 +159,14 @@
                         form.action = "https://www.google.com/search";
                         input.name = "q";
                         input.placeholder = "Search the web...";
+                        tempFlag.disabled = true; // don't send extra param to Google
                         googleBtn.classList.add("active");
-                        wolframBtn.classList.remove("active");
+                        chatgptBtn.classList.remove("active");
                     });
                 </script>
             </div>
+            <!-- END REPLACEMENT -->
+
         </div>
     </div>
 
