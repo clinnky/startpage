@@ -47,7 +47,7 @@
                     <script>
                         const weatherElement = document.querySelector('.weather');
                         const apiKey = '4a64cd55d1e84c01b99135356251904';
-                        const city = 'Liverpool';
+                        const city = 'Clermont';
                         const url = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city;
 
                         fetch(url)
@@ -71,14 +71,14 @@
 
         <div class="right-container">
             <div class="head">
-                <p id="greeting">Hello, alan<span class="blinking">_</span></p>
+                <p id="greeting">Hello, Noah<span class="blinking">_</span></p>
                 <script>
                     const hour = new Date().getHours();
                     let greet = "Hello";
                     if (hour < 12) greet = "Good morning";
                     else if (hour < 18) greet = "Good afternoon";
                     else greet = "Good evening";
-                    document.getElementById('greeting').innerHTML = `${greet}, alan<span class="blinking">_</span>`;
+                    document.getElementById('greeting').innerHTML = `${greet}, Noah<span class="blinking">_</span>`;
                 </script>
             </div>
 
