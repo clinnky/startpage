@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>~/home</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+
     <style>
         iframe {
             position: absolute;
@@ -22,6 +23,49 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
+        }
+    </style>
+
+    <!-- Force color override to #6b3ca9 -->
+    <style id="theme-override">
+        :root {
+            --color-fg: #6b3ca9 !important;
+            --color-link: #6b3ca9 !important;
+            --color-link-visited: #6b3ca9 !important;
+            --color-link-hover: #8f6ec4 !important; /* lighter hover */
+        }
+
+        /* Buttons and toggles */
+        .wolfram-button,
+        .toggle-button.active {
+            background-color: #6b3ca9 !important;
+            color: #fff !important;
+        }
+
+        .wolfram-button:hover {
+            background-color: #8f6ec4 !important;
+        }
+
+        .toggle-button {
+            border: 1px solid #6b3ca9 !important;
+            color: #6b3ca9 !important;
+            background-color: #1e1e1e !important;
+        }
+
+        /* Search input */
+        .wolfram-input {
+            color: #6b3ca9 !important;
+        }
+
+        /* Links */
+        a:link,
+        a:visited {
+            color: #6b3ca9 !important;
+        }
+
+        a:hover {
+            color: #8f6ec4 !important;
+            text-shadow: 0 0 5px #8f6ec4, 0 0 10px #8f6ec4 !important;
         }
     </style>
 </head>
@@ -153,7 +197,7 @@
         function updateDate() {
             const now = new Date();
             const day = String(now.getDate()).padStart(2, '0');
-            const month = now.toLocaleString('default', { month: 'short' }); // e.g. "Oct"
+            const month = now.toLocaleString('default', { month: 'short' });
             const year = now.getFullYear();
             const formatted = `${day}/${month}/${year}`;
             document.getElementById('date').textContent = formatted;
@@ -164,7 +208,7 @@
         (function scheduleMidnightRefresh() {
             const now = new Date();
             const next = new Date(now);
-            next.setHours(24, 0, 5, 0); // 5 seconds after midnight
+            next.setHours(24, 0, 5, 0);
             const msUntilNext = next - now;
             setTimeout(function () {
                 updateDate();
