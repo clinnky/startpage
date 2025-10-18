@@ -1,9 +1,9 @@
 :root {
     --color-bg: #282828;
-    --color-fg: #c282cf;
-    --color-link: #8F9191;
-    --color-link-visited: #8F9191;
-    --color-link-hover: #3d97bb;
+    --color-fg: #6b3ca9;
+    --color-link: #6b3ca9;
+    --color-link-visited: #6b3ca9;
+    --color-link-hover: #8f6ec4;
 }
 
 html, body {
@@ -22,7 +22,7 @@ html, body {
     grid-template-areas: ". left right .";
     column-gap: 80px;
     justify-items: center;
-    align-items: center; /* <-- center both left and right vertically */
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -94,17 +94,16 @@ li {
     padding: 5px;
 }
 
-a:link {
+a:link,
+a:visited {
     text-decoration: none;
     color: var(--color-link);
 }
 
-a:visited {
-    color: var(--color-link-visited);
-}
-
 a:hover {
     color: var(--color-link-hover);
+    text-shadow: 0 0 5px var(--color-link-hover), 0 0 10px var(--color-link-hover);
+    transition: text-shadow 0.3s ease-in-out;
 }
 
 .blinking {
@@ -113,15 +112,8 @@ a:hover {
 }
 
 @keyframes opacity {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .time-and-weather {
@@ -139,22 +131,12 @@ body {
 }
 
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-a:hover {
-    color: var(--color-link-hover);
-    text-shadow: 0 0 5px var(--color-link-hover), 0 0 10px var(--color-link-hover);
-    transition: text-shadow 0.3s ease-in-out;
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .video-player {
-    display: none; /* Hides the iframe player */
+    display: none;
 }
 
 .wolfram-search {
@@ -169,7 +151,7 @@ a:hover {
     border: none;
     width: 220px;
     background-color: #1e1e1e;
-    color: #c282cf;
+    color: var(--color-fg);
     font-family: "Fira Code";
     font-size: 14px;
 }
@@ -177,7 +159,7 @@ a:hover {
 .wolfram-button {
     padding: 8px 12px;
     margin-left: 8px;
-    background-color: #c282cf;
+    background-color: var(--color-fg);
     color: white;
     border: none;
     border-radius: 5px;
@@ -187,7 +169,7 @@ a:hover {
 }
 
 .wolfram-button:hover {
-    background-color: #a066b4;
+    background-color: var(--color-link-hover);
 }
 
 .search-toggle-container {
@@ -206,14 +188,14 @@ a:hover {
 .toggle-button {
     padding: 5px 10px;
     background-color: #1e1e1e;
-    border: 1px solid #c282cf;
-    color: #c282cf;
+    border: 1px solid var(--color-fg);
+    color: var(--color-fg);
     font-family: "Fira Code";
     border-radius: 5px;
     cursor: pointer;
 }
 
 .toggle-button.active {
-    background-color: #c282cf;
+    background-color: var(--color-fg);
     color: white;
 }
