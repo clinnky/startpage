@@ -6,7 +6,6 @@
     <title>~/home</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        /* Hide the iframe but allow it to play in the background */
         iframe {
             position: absolute;
             top: 0;
@@ -14,11 +13,10 @@
             width: 100%;
             height: 100%;
             border: none;
-            opacity: 0;  /* Make the iframe invisible */
-            pointer-events: none; /* Disable interaction with the iframe */
+            opacity: 0;
+            pointer-events: none;
         }
 
-        /* Make the body fill the entire screen */
         body, html {
             margin: 0;
             padding: 0;
@@ -29,15 +27,6 @@
 </head>
 
 <body>
-    <!-- Embed the YouTube video and make it invisible
-    <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&loop=1&playlist=jfKfPfyJRdk"
-        title="lofi hip hop radio 📚 beats to relax/study to" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-    </iframe> -->
-
     <div class="container">
         <div class="left-container">
             <div class="time-and-weather">
@@ -56,7 +45,6 @@
                                 const weather = data.current.condition.text;
                                 const temperature = data.current.temp_c;
                                 const string = weather + ' ' + temperature + '°C';
-                                const icon = data.current.condition.icon;
                                 weatherElement.textContent = string;
                             })
                             .catch(error => console.error(error));
@@ -81,8 +69,6 @@
                     document.getElementById('greeting').innerHTML = `${greet}, Noah<span class="blinking">_</span>`;
                 </script>
             </div>
-
-            
 
             <div class="bookmarks">
                 <div class="category">
@@ -111,7 +97,7 @@
                         <li><a href="https://youtube.com">youtube</a></li>
                         <li><a href="https://spotify.com">spotify</a></li>
                         <li><a href="https://hdtodayz.to/">netflix</a></li>
-                        <li><a href="https:/om//www.bilibili.com/">bili bili</a></li>
+                        <li><a href="https://www.bilibili.com/">bili bili</a></li>
                     </div>
                 </div>
 
@@ -123,50 +109,50 @@
                         <li><a href="https://reddit.com">reddit</a></li>
                         <li><a href="https://snapchat.com">snapchat</a></li>
                     </div>
-                
                 </div>
             </div>
 
-            <!-- REPLACED: Wolfram Alpha search => ChatGPT search -->
+            <!-- Swapped Order: Web Search left, ChatGPT right -->
             <div class="search-toggle-container">
                 <div class="search-toggle-buttons">
-                    <button id="toggle-chatgpt" class="toggle-button active">ChatGPT</button>
-                    <button id="toggle-google" class="toggle-button">Web Search</button>
+                    <button id="toggle-startpage" class="toggle-button active">Web Search</button>
+                    <button id="toggle-chatgpt" class="toggle-button">ChatGPT</button>
                 </div>
-            
-                <form id="search-form" action="https://chatgpt.com/" method="get" target="_blank">
-                    <input type="hidden" name="temporary-chat" value="true" id="temp-chat-flag" />
-                    <input type="text" name="q" placeholder="Ask ChatGPT..." class="wolfram-input" id="search-input" />
+
+                <!-- Default to StartPage -->
+                <form id="search-form" action="https://www.startpage.com/sp/search" method="get" target="_blank">
+                    <input type="hidden" name="temporary-chat" value="true" id="temp-chat-flag" disabled />
+                    <input type="text" name="query" placeholder="Search the web..." class="wolfram-input" id="search-input" />
                     <button type="submit" class="wolfram-button">Go</button>
                 </form>
+
                 <script>
                     const chatgptBtn = document.getElementById("toggle-chatgpt");
-                    const googleBtn = document.getElementById("toggle-google");
+                    const startpageBtn = document.getElementById("toggle-startpage");
                     const form = document.getElementById("search-form");
                     const input = document.getElementById("search-input");
                     const tempFlag = document.getElementById("temp-chat-flag");
-                
+
                     chatgptBtn.addEventListener("click", () => {
                         form.action = "https://chatgpt.com/";
                         input.name = "q";
                         input.placeholder = "Ask ChatGPT...";
-                        tempFlag.disabled = false; // include temporary chat flag
+                        tempFlag.disabled = false;
                         chatgptBtn.classList.add("active");
-                        googleBtn.classList.remove("active");
+                        startpageBtn.classList.remove("active");
                     });
-                
-                    googleBtn.addEventListener("click", () => {
-                        form.action = "https://www.google.com/search";
-                        input.name = "q";
+
+                    startpageBtn.addEventListener("click", () => {
+                        form.action = "https://www.startpage.com/sp/search";
+                        input.name = "query";
                         input.placeholder = "Search the web...";
-                        tempFlag.disabled = true; // don't send extra param to Google
-                        googleBtn.classList.add("active");
+                        tempFlag.disabled = true;
+                        startpageBtn.classList.add("active");
                         chatgptBtn.classList.remove("active");
                     });
                 </script>
             </div>
-            <!-- END REPLACEMENT -->
-
+            <!-- END SWAP -->
         </div>
     </div>
 
@@ -174,10 +160,10 @@
         function updateTime() {
             const now = new Date();
             const h = now.getHours();
-            const m = now.getMinutes();
-            document.getElementById('time').textContent = `${h}:${m.toString().padStart(2, '0')}`;
+            const m = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('time').textContent = `${h}:${m}`;
         }
-        updateTime(); // run immediately
+        updateTime();
         setInterval(updateTime, 1000);
     </script>
 </body>
