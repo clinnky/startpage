@@ -32,10 +32,9 @@
             --color-fg: #7A4BB8 !important;
             --color-link: #7A4BB8 !important;
             --color-link-visited: #7A4BB8 !important;
-            --color-link-hover: #9d6cd4 !important; /* lighter hover */
+            --color-link-hover: #9d6cd4 !important;
         }
 
-        /* Buttons and toggles */
         .wolfram-button,
         .toggle-button.active {
             background-color: #7A4BB8 !important;
@@ -52,12 +51,10 @@
             background-color: #1e1e1e !important;
         }
 
-        /* Search input */
         .wolfram-input {
             color: #7A4BB8 !important;
         }
 
-        /* Links */
         a:link,
         a:visited {
             color: #7A4BB8 !important;
@@ -68,7 +65,6 @@
             text-shadow: 0 0 5px #9d6cd4, 0 0 10px #9d6cd4 !important;
         }
 
-        /* Headings, greeting, and time */
         #greeting,
         #time,
         #date,
@@ -147,14 +143,13 @@
                 </div>
             </div>
 
-            <!-- Swapped Order: Web Search left, ChatGPT right -->
+            <!-- Swapped Order: Web Search left, Perplexity right -->
             <div class="search-toggle-container">
                 <div class="search-toggle-buttons">
                     <button id="toggle-startpage" class="toggle-button active">Web Search</button>
-                    <button id="toggle-chatgpt" class="toggle-button">ChatGPT</button>
+                    <button id="toggle-chatgpt" class="toggle-button">Perplexity</button>
                 </div>
 
-                <!-- Default to DuckDuckGo -->
                 <form id="search-form" action="https://duckduckgo.com/" method="get" target="_blank">
                     <input type="hidden" name="temporary-chat" value="true" id="temp-chat-flag" disabled />
                     <input type="text" name="q" placeholder="Search the web..." class="wolfram-input" id="search-input" />
@@ -169,9 +164,9 @@
                     const tempFlag = document.getElementById("temp-chat-flag");
 
                     chatgptBtn.addEventListener("click", () => {
-                        form.action = "https://chatgpt.com/";
+                        form.action = "https://www.perplexity.ai/search";
                         input.name = "q";
-                        input.placeholder = "Ask ChatGPT...";
+                        input.placeholder = "Ask Perplexity...";
                         tempFlag.disabled = false;
                         chatgptBtn.classList.add("active");
                         startpageBtn.classList.remove("active");
@@ -187,7 +182,6 @@
                     });
                 </script>
             </div>
-            <!-- END SWAP -->
         </div>
     </div>
 
@@ -202,7 +196,6 @@
         updateTime();
         setInterval(updateTime, 1000);
 
-        // === DATE SCRIPT ===
         function updateDate() {
             const now = new Date();
             const day = String(now.getDate()).padStart(2, '0');
@@ -211,7 +204,6 @@
             const formatted = `${day}/${month}/${year}`;
             document.getElementById('date').textContent = formatted;
         }
-
         updateDate();
 
         (function scheduleMidnightRefresh() {
